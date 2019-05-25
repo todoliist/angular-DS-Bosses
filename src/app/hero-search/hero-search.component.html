@@ -1,0 +1,20 @@
+<div id="search-component">
+  <h4>Boss Search</h4>
+
+  <!-- (input) event occurs when the text content of an element is changed through the user interface.比click button更有实时更新功能-->
+  <!-- #searchBox 表示 reference variable, 后面search(searchBox.value)表示引用了这个#searchBox属性的值-->
+
+  <input #searchBox id="search-box" (input)="search(searchBox.value)" />
+
+  <ul class="search-result">
+
+    <!--async 管道会订阅一个 Observable 或 Promise，并返回它发出的最近一个值。
+      当新值到来时，async 管道就会把该组件标记为需要进行变更检测。当组件被销毁时，async 管道就会自动取消订阅，
+      以消除潜在的内存泄露问题。个人理解：async对应observable的应用-->
+    <li *ngFor="let hero of heroes$ | async" >
+      <a routerLink="/detail/{{hero.id}}">
+        {{hero.name}}
+      </a>
+    </li>
+  </ul>
+</div>
